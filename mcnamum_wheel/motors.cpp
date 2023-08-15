@@ -138,8 +138,20 @@ void MoveCar(int cur_spd, int btns, int x_axis) {
     if (abs(x_axis) < 30)
       x_axis = 0;
     else {
-      steering = map(abs(x_axis), 30, 512, 0, 75) * (x_axis > 0 ? 1 : -1);
-      steering = steering * (cur_spd > 0 ? 1 : -1);  // switch +- for backward
+      // steering = map(abs(x_axis), 30, 512, 0, 75) * (x_axis > 0 ? 1 : -1);
+      if(x_axis>0){
+        steering = map(abs(x_axis), 30, 512, 0, 75) * 1
+      } else{
+        steering = map(abs(x_axis), 30, 512, 0, 75) * -1
+      }
+
+
+      // steering = steering * (cur_spd > 0 ? 1 : -1);  // switch +- for backward
+      if(cur_spd>0){
+        steering *= 1
+      } else{
+        steering *= -1
+      }
 
       spd_fl += steering;
       spd_fr -= steering;
@@ -150,7 +162,12 @@ void MoveCar(int cur_spd, int btns, int x_axis) {
 
   int shift_spd = 100;
   if (btns & 0x30) {  // 0x10 : Left Bumper,  0x20 : Right Bumper
-    shift_spd *= cur_spd > 0 ? 1 : -1;
+    // shift_spd *= cur_spd > 0 ? 1 : -1;
+    if(cur_spd>0){
+      shift_spd *= 1;
+    } else{
+      shift_spd *= -1;
+    }
 
     if (btns & 0x10) {     // left shift
       spd_fl += shift_spd; /*base*/

@@ -61,7 +61,7 @@ void loop() {
       */
     }else if(l_trig && r_trig){  // R-L Trigger both pressed mean breaking 0~1023 0~0x3ff
       int breaking;
-      if(car_status==FORWARD){
+      if(car_status==FORWARD){  //depending on the direction the car is headed then the opposite trigger will be used as a break
         breaking = l_trig;
       }else if(car_status=BACKWARD){
         breaking = r_trig;
@@ -71,7 +71,7 @@ void loop() {
       if(breaking>1000)
         breaking = cur_speed; // stop immediately
       else if(breaking>0x200)
-        breaking = INC_SPEED*4;
+        breaking = INC_SPEED*4;//depending on how much the break is being pressed change the increment speed of how fast it slows down
       else if(breaking>0x80)
         breaking = INC_SPEED*3;
       else

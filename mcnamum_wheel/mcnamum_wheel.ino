@@ -52,13 +52,7 @@ void loop() {
         StopAll();
         cur_speed=0;
       }
-      /* just for checking speed decrease.
-      static int cur_speed_bk;
-      if(cur_speed!=cur_speed_bk){
-        cur_speed_bk=cur_speed;
-        Serial.println(cur_speed);
-      }
-      */
+
     }else if(l_trig && r_trig){  // R-L Trigger both pressed mean breaking 0~1023 0~0x3ff
       int breaking;
       if(car_status==FORWARD){  //depending on the direction the car is headed then the opposite trigger will be used as a break
